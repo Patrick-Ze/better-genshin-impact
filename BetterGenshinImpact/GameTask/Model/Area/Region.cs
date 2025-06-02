@@ -20,6 +20,7 @@ public class Region : IDisposable
     public int Y { get; set; }
     public int Width { get; set; }
     public int Height { get; set; }
+    public Pen DrawOnWindowPen = new(Color.Red, 2);
 
     public int Top
     {
@@ -180,8 +181,9 @@ public class Region : IDisposable
     /// <param name="pen"></param>
     public void DrawSelf(string name, Pen? pen = null)
     {
+        Pen finalPen = pen ?? DrawOnWindowPen;
         // 相对自己是 0, 0 坐标
-        DrawRect(0, 0, Width, Height, name, pen);
+        DrawRect(0, 0, Width, Height, name, finalPen);
     }
 
     /// <summary>
